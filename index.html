@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Admin Login</h1>
+    </header>
+
+    <section>
+        <form id="login-form">
+            <label for="code">Admin Code:</label>
+            <input type="password" id="code" name="code" required><br><br>
+            <input type="submit" value="Einloggen">
+        </form>
+    </section>
+
+    <script>
+        const correctCode = '123';
+
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const enteredCode = document.getElementById('code').value;
+            if (enteredCode === correctCode) {
+                window.location.href = 'admin_area.html';  // Weiterleitung zum Admin-Bereich
+            } else {
+                alert('Falscher Code!');
+            }
+        });
+    </script>
+</body>
+</html>
