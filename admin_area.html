@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Bereich</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Admin Bereich - Neue Umfrage erstellen</h1>
+    </header>
+
+    <section>
+        <form id="survey-form">
+            <label for="datum">Datum:</label>
+            <input type="date" id="datum" name="datum" required><br><br>
+
+            <h3>Menü-Auswahl</h3>
+            
+            <label for="menue1">Gericht 1 (Hauptgericht):</label>
+            <input type="text" id="menue1" name="menue1" required><br><br>
+
+            <label for="menue2">Gericht 2 (Salat):</label>
+            <input type="text" id="menue2" name="menue2" required><br><br>
+
+            <label for="menue3">Gericht 3 (Salat):</label>
+            <input type="text" id="menue3" name="menue3" required><br><br>
+
+            <label for="suppe">Suppe:</label>
+            <input type="text" id="suppe" name="suppe" required><br><br>
+
+            <label for="nachtisch">Nachtisch:</label>
+            <input type="text" id="nachtisch" name="nachtisch" required><br><br>
+
+            <input type="submit" value="Umfrage speichern">
+        </form>
+    </section>
+
+    <script>
+        document.getElementById('survey-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Eingabewerte sammeln
+            const datum = document.getElementById('datum').value;
+            const menue1 = document.getElementById('menue1').value;
+            const menue2 = document.getElementById('menue2').value;
+            const menue3 = document.getElementById('menue3').value;
+            const suppe = document.getElementById('suppe').value;
+            const nachtisch = document.getElementById('nachtisch').value;
+
+            // Umfrage speichern im LocalStorage
+            const surveyData = {
+                datum: datum,
+                menue1: menue1,
+                menue2: menue2,
+                menue3: menue3,
+                suppe: suppe,
+                nachtisch: nachtisch
+            };
+
+            let surveys = JSON.parse(localStorage.getItem('surveys')) || [];
+            surveys.push(surveyData);
+            localStorage.setItem('surveys', JSON.stringify(surveys));
+
+            alert('Die Umfrage wurde erfolgreich gespeichert!');
+        });
+    </script>
+</body>
+</html>
